@@ -1,3 +1,3 @@
-module github.com/opendss/tookit
+module github.com/opendss/toolkit
 
 go 1.24.0
