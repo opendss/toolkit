@@ -1,6 +1,6 @@
 package model
 
 type TError[T any] struct {
-	T   any
+	T   T
 	Err error
 }
