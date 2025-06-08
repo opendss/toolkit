@@ -1,6 +1,10 @@
 package callback
 
-import "sync/atomic"
+import (
+	"sync/atomic"
+)
+
+var NoError = func(err error) {}
 
 type cb[T any] struct {
 	onFinish func(t T)
