@@ -15,13 +15,17 @@ const (
 	PprofLabelComponent string = "component"
 )
 
-func RunPprof(ctx context.Context, addr string) io.Closer {
+type PprofOptions struct {
+	BindAddress string `json:"bindAddress,omitempty" yaml:"bind-address,omitempty"`
+}
+
+func RunPprof(ctx context.Context, option PprofOptions) io.Closer {
 	s := &http.Server{
-		Addr:              addr,
+		Addr:              option.BindAddress,
 		Handler:           http.DefaultServeMux,
 		ReadHeaderTimeout: time.Second,
 	}
-	slog.Info("starting pprof http server.", slog.String("addr", addr))
+	slog.Info("starting pprof http server.", slog.String("addr", option.BindAddress))
 
 	go pprof.Do(ctx, pprof.Labels(PprofLabelComponent, "pprof-server"), func(ctx context.Context) {
 		if err := s.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
