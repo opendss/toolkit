@@ -15,6 +15,9 @@ func (s *Sync[T]) Finish(t T) {
 	}
 }
 
+func (s *Sync[T]) BeforeHook(func()) {
+}
+
 func (s *Sync[T]) Error(err error) {
 	s.ch <- model.TError[T]{
 		Err: err,
