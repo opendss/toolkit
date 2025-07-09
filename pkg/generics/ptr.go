@@ -1,4 +1,4 @@
-package generic
+package generics
 
 func Ptr[T any](v T) *T {
 	return &v

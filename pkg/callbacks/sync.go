@@ -1,15 +1,15 @@
-package callback
+package callbacks
 
 import (
-	"github.com/opendss/toolkit/pkg/model"
+	"github.com/opendss/toolkit/pkg/models"
 )
 
 type Sync[T any] struct {
-	ch chan model.TError[T]
+	ch chan models.TError[T]
 }
 
 func (s *Sync[T]) Finish(t T) {
-	s.ch <- model.TError[T]{
+	s.ch <- models.TError[T]{
 		T:   t,
 		Err: nil,
 	}
@@ -19,7 +19,7 @@ func (s *Sync[T]) BeforeHook(func()) {
 }
 
 func (s *Sync[T]) Error(err error) {
-	s.ch <- model.TError[T]{
+	s.ch <- models.TError[T]{
 		Err: err,
 	}
 }
@@ -31,6 +31,6 @@ func (s *Sync[T]) Wait() (T, error) {
 
 func NewSync[T any]() *Sync[T] {
 	return &Sync[T]{
-		ch: make(chan model.TError[T], 1),
+		ch: make(chan models.TError[T], 1),
 	}
 }

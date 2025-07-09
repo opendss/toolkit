@@ -1,4 +1,4 @@
-package channel
+package channels
 
 func PushNoBlock[T any](ch chan T, t T) bool {
 	select {

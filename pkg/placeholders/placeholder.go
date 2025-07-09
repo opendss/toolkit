@@ -1,4 +1,4 @@
-package placeholder
+package placeholders
 
 import "github.com/emirpasic/gods/v2/sets/linkedhashset"
 

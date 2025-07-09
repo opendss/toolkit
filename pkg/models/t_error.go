@@ -1,4 +1,4 @@
-package model
+package models
 
 type TError[T any] struct {
 	T   T

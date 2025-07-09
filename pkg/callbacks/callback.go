@@ -1,4 +1,4 @@
-package callback
+package callbacks
 
 type Callback[T any] interface {
 	BeforeHook(func())
